@@ -17,9 +17,24 @@ external_url "https://gitlab.example.com"         # Must use https protocol
 letsencrypt['contact_emails'] = ['foo@email.com'] # Optional
 
 Copy the above into gitlab.rb and remove external url present in the file formerly present.
-
 Then run the following commands for manaual lets encrypt Renewal:
 sudo gitlab-ctl reconfigure
 sudo gitlab-ctl renew-le-certs
+
+Run gitlab runner in a container using the following:(Documentation - https://docs.gitlab.com/runner/install/docker.html )
+Option 1: Use local system volume mounts to start the Runner container
+docker run -d --name gitlab-runner --restart always \
+  -v /srv/gitlab-runner/config:/etc/gitlab-runner \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  gitlab/gitlab-runner:latest
+  
+Next Step is to register runner by installing GitLab Runner in a container.
+docker run --rm -it -v /srv/gitlab-runner/config:/etc/gitlab-runner gitlab/gitlab-runner register
+To complete the registration, follow the documentation https://docs.gitlab.com/runner/register/index.html#docker 
+and follow the direction of docker from point 2 to point 8
+
+Then to make sure the runner runs visit the link 
+https://stackoverflow.com/questions/53370840/this-job-is-stuck-because-the-project-doesnt-have-any-runners-online-assigned
+Then the runner will work.
 
 Wait a little, go to incognito and use the domain name created to log into gitlab.
