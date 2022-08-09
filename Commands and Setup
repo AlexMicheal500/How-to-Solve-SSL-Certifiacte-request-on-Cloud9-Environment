@@ -1,0 +1,25 @@
+If you do not have a domain name, 
+1. visit https://www.noip.com/
+2. Go to signup and register for a new domain name
+3. Activate from email address
+4. Go to Manage DNS
+5.Go to Dynamic DNS at the lft hand side and go to "No-IP Hostname".
+6. Change your target IP to your own address
+
+
+To configure certificate to gitlab, follow the documentation https://docs.gitlab.com/omnibus/settings/ssl.html
+1. In your gitlab server got to gilab.rb using the following commands:
+	cd /etc/gitlab/
+	nano gitlab.rb
+Then copy:
+letsencrypt['enable'] = true                      # GitLab 10.5 and 10.6 require this option
+external_url "https://gitlab.example.com"         # Must use https protocol
+letsencrypt['contact_emails'] = ['foo@email.com'] # Optional
+
+Copy the above into gitlab.rb and remove external url present in the file formerly present.
+
+Then run the following commands for manaual lets encrypt Renewal:
+sudo gitlab-ctl reconfigure
+sudo gitlab-ctl renew-le-certs
+
+Wait a little, go to incognito and use the domain name created to log into gitlab.
