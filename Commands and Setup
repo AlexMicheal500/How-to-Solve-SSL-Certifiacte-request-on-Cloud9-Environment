@@ -21,7 +21,8 @@ Then run the following commands for manaual lets encrypt Renewal:
 sudo gitlab-ctl reconfigure
 sudo gitlab-ctl renew-le-certs
 
-Run gitlab runner in a container using the following:(Documentation - https://docs.gitlab.com/runner/install/docker.html )
+NOTE: GITLAB RUNNER REGISTRATION SHOULD BE DONE IN THE GITLAB SERVER.
+Run gitlab runner in a container using the following:(Documentation - https://docs.gitlab.com/runner/install/docker.html ) 
 Option 1: Use local system volume mounts to start the Runner container
 docker run -d --name gitlab-runner --restart always \
   -v /srv/gitlab-runner/config:/etc/gitlab-runner \
