@@ -6,11 +6,13 @@ If you do not have a domain name,
 5.Go to Dynamic DNS at the lft hand side and go to "No-IP Hostname".
 6. Change your target IP to your own address
 
+==============================================================================================================================================================
+DOCUMENTATION for installation of gitlab on a docker environment can be found in https://docs.gitlab.com/ee/install/docker.html?_gl=1*1hfvacf*_ga*NTYzOTIwNzMxLjE2NjM3NTEwMDg.*_ga_ENFH3X7M5Y*MTY3OTMwNjczOC4xOC4wLjE2NzkzMDY3MzguMC4wLjA.
 NOTE: In a docker enviromnent, to reset password, we use: 
 docker exec -it gitlab-ce grep 'Password:' /etc/gitlab/initial_root_password 
 The above will get the root password. Then when you enter the GUI and login with default username= root... Then go to Admin icon and change the password
 
-
+================================================================================================================================================================
 To configure certificate to gitlab, follow the documentation https://docs.gitlab.com/omnibus/settings/ssl.html
 1. In your gitlab server got to gilab.rb using the following commands:
 	cd /etc/gitlab/
